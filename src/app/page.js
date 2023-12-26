@@ -1,8 +1,12 @@
 import Image from 'next/image'
 import styles from './page.module.css'
 import Link from 'next/link'
+import { getServerSession } from 'next-auth/next'
+import { authOptions } from './api/auth/[...nextauth]/route'
 
-export default function Home() {
+export default async function Home() {
+
+  const data = await getServerSession(authOptions)
   return (
     <main className={styles.main}>
       <div className={styles.description}>
@@ -11,6 +15,10 @@ export default function Home() {
           <code className={styles.code}>src/app/page.js</code>
         </p>
         <h1>We are developers</h1>
+
+        {
+          JSON.stringify(data)
+        }
         <div>
           <a
             href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
@@ -53,7 +61,7 @@ export default function Home() {
         </Link>
 
         <Link
-          href="/add-user"  
+          href="/add-user"
           className={styles.card}
         >
           <h2>
@@ -61,6 +69,8 @@ export default function Home() {
           </h2>
           <p>Learn about Next.js in an interactive course with&nbsp;quizzes!</p>
         </Link>
+
+      
 
         <a
           href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"

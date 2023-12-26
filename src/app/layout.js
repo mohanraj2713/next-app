@@ -1,7 +1,9 @@
 import { Inter } from 'next/font/google'
 import './globals.css'
 import Providers from './redux/provider'
-
+import 'bootstrap/dist/css/bootstrap.min.css';
+import Script from 'next/script';
+import AuthProvider from "./component/AuthProvider"
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata = {
@@ -12,7 +14,15 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (<Providers>
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body className={inter.className}>
+        <main>
+          <AuthProvider>
+            {children}
+          </AuthProvider>
+        </main>
+      </body>
+      <Script src="https://code.jquery.com/jquery-3.6.0.min.js" />
+      <Script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js" />
     </html>
   </Providers>
   )
