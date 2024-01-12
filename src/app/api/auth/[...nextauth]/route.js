@@ -12,6 +12,8 @@ export const authOptions = {
       },
       async authorize(credentials, req) {
 
+        console.log("CREDENTIALS",credentials)
+
         if (!credentials || !credentials.email || !credentials.password) {
           return null
         }
